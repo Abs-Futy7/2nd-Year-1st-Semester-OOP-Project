@@ -62,7 +62,6 @@ The **School Management System** is an Object-Oriented Programming (OOP) based p
 
 4. **Run the Project**
    - In NetBeans, select **Run Project** (Apache Ant will handle the build and execution).
-   - To use the chatroom feature, you need to manually run the `ChatServer.java` file. Once the server is running, you can access and use the chatroom feature.
 
 5. **Another Way to Run the Project**
    - Download the `dist` folder from the repository.
@@ -72,6 +71,8 @@ The **School Management System** is an Object-Oriented Programming (OOP) based p
      java -jar School_Management_System.jar
      ```
    - Ensure you have **JDK 22** installed on your system to run the JAR file.
+6. **Using Chat Room Feature**
+   - To use the chatroom feature, you need to manually run the `ChatServer.java` file. Once the server is running, you can access and use the chatroom feature.
 ---
 
 ## Features
