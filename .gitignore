@@ -1,0 +1,54 @@
+ 
+# NetBeans project files
+/nbproject/private/
+/nbproject/
+/build/
+/.nb-gradle/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package files
+*.war
+*.ear
+
+# Build directories
+/target/
+/bin/
+
+# Dependency directories
+/libs/
+
+# IDE-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ant build files
+/build.xml
+/build.properties
+
+# Maven-specific files (if applicable)
+/target/
+/pom.xml
+
+# Gradle-specific files (if applicable)
+.gradle/
+/build/
+
+# Local configuration files
+*.orig
+*.bak
+
+# Logs and temporary files
+/logs/
+/tmp/
+======= 

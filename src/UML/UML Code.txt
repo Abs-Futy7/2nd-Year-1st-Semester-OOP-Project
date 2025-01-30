@@ -1,0 +1,793 @@
+@startuml
+
+class MainPageButton {
+    - Color defaultColor
+    - Color hoverColor
+    - Color pressedColor
+    - int cornerRadius
+    + MainPageButton(String text)
+    - void setUIProperties()
+    - void addInteractivity()
+    + Dimension getPreferredSize()
+}
+
+class MainPage {
+    - MainPageButton loginButton
+    - MainPageButton chatButton
+    - MainPageButton aboutUsButton
+    - MainPageButton registerButton
+    + MainPage()
+    - JButton createLoginButton()
+    - JButton createChatButton()
+    - JButton createAboutUsButton()
+    - JButton createRegisterButton()
+    + void actionPerformed(ActionEvent e)
+    + void startClient()
+    + void startServer()
+    + void openLoginSelectionPage()
+}
+
+class AboutUs {
+    - JButton backButton
+    + AboutUs()
+    + void actionPerformed(ActionEvent e)
+}
+
+class Server {
+    - HashMap<String, String> faq
+    + static void startServer()
+}
+
+class ClientHandler {
+    - Socket socket
+    + ClientHandler(Socket socket)
+    + void run()
+}
+
+class Client {
+    - JComboBox<String> questionDropdown
+    - JPanel chatPanel
+    - JButton sendButton
+    - JButton refreshButton
+    - PrintWriter out
+    + Client()
+    - void sendMessage()
+    - void resetInterface()
+    - void addMessage(String sender, String message, boolean isClient)
+    - void connectToServer()
+    - JButton createStyledButton(String text, Color backgroundColor, Color hoverColor)
+}
+
+class LoginSelectionPage {
+    - SectionButton adminLogin
+    - SectionButton teacherLogin
+    - SectionButton studentLogin
+    - SectionButton backButton
+    + LoginSelectionPage()
+    + void actionPerformed(ActionEvent e)
+}
+
+class SectionButton {
+    - Color hoverColor
+    - Color pressColor
+    + SectionButton(String text)
+    - void paintComponent(Graphics g)
+}
+
+class RoundedBorder implements Border {
+    - int radius
+    + Insets getBorderInsets(Component c)
+    + boolean isBorderOpaque()
+    + void paintBorder(Component c, Graphics g, int x, int y, int width, int height)
+}
+
+class Login {
+    - RoundedButton login
+    - RoundedButton cancel
+    - RoundedButton register
+    - RoundedButton forgetpass
+    - JTextField tfusername
+    - JPasswordField tfpassword
+    - String person
+    + Login(String person)
+    - void addButtonEffects(RoundedButton button)
+    + void actionPerformed(ActionEvent e)
+}
+
+class Register {
+    - JTextField firstName
+    - JTextField lastName
+    - JTextField email
+    - JTextField password
+    - JTextField phone
+    - JComboBox gender
+    - JComboBox department
+    - JButton registerButton
+    - JButton browseImageButton
+    - JLabel imageLabel
+    - File selectedImage
+    - Connection conn
+
+    + Register()
+    + void actionPerformed(ActionEvent e)
+    + void browseImage()
+    + void registerUser()
+}
+
+class AdminButton {
+    - hoverColor : Color
+    - pressColor : Color
+    + AdminButton()
+    + paintComponent(Graphics g)
+}
+
+class RoundedBorder {
+    - radius : int
+    + RoundedBorder(int radius)
+    + getBorderInsets(Component c)
+    + isBorderOpaque()
+    + paintBorder(Component c, Graphics g, int x, int y, int width, int height)
+}
+
+class AdminDashboard {
+    - manageStudents : JButton
+    - manageTeachers : JButton
+    - manageClasses : JButton
+    - payment : JButton
+    - logout : JButton
+    - st : int
+    - te : int
+    - cl : int
+    + AdminDashboard()
+    + getdata()
+    + createStatCard(String title, String value, Color bgColor, Color fgColor)
+    + actionPerformed(ActionEvent e)
+}
+
+class ManagePage {
+    - type : String
+    - updateInfo : JLabel
+    - totalInfo : JLabel
+    - addnewstudent : JButton
+    - DeleteUser : JButton
+    + ManagePage(String type)
+    + actionPerformed(ActionEvent e)
+}
+
+class Connect {
+    - c : Connection
+    - s : Statement
+    + Connect()
+}
+
+class AddNewStudent extends JFrame implements ActionListener {
+    - JTextField tfname, tffname, tfroll, tfaddress, tfphone, tfemail, tfbc, tfclass
+    - JDateChooser dcdob
+    - JButton submit, cancel
+    + AddNewStudent()
+    + void actionPerformed(ActionEvent ae)
+    + static void main(String[] args)
+}
+
+class SButton extends JButton {
+    - Color hoverColor
+    - Color pressColor
+    + SButton(String text)
+    + void paintComponent(Graphics g)
+}
+
+class TButton {
+    - Color hoverColor
+    - Color pressColor
+    + TButton(text: String)
+    + paintComponent(g: Graphics): void
+}
+
+class AddNewTeacher {
+    - JTextField tfname
+    - JTextField tffname
+    - JTextField tfid
+    - JTextField tfaddress
+    - JTextField tfphone
+    - JTextField tfemail
+    - JTextField tfnid
+    - JDateChooser dcdob
+    - JButton submit
+    - JButton cancel
+    - Random ran
+    + AddNewTeacher()
+    + actionPerformed(ae: ActionEvent): void
+}
+
+class AssignClass {
+    - DefaultListModel<String> teacherListModel
+    - JList<String> teacherList
+    - Map<String, JCheckBox> subjectCheckboxes
+    - Map<String, JComboBox<String>> classComboboxes
+    - Map<String, JComboBox<String>> timeComboboxes
+    - Map<String, JComboBox<String>> roomComboboxes
+    - int empid
+    + AssignClass()
+    - void initComponents()
+    - void layoutComponents()
+    - void loadTeachersFromDatabase()
+    - void updateSelections(JCheckBox cb)
+    - void saveAssignmentsToDatabase()
+    - JButton createStyledButton(String text, Color bgColor)
+    - void updateClassSelection(JCheckBox cb)
+    + static void main(String[] args)
+}
+
+class SetButton {
+    + SetButton(String text)
+    - void setCustomDesign()
+}
+
+class PaymentForm {
+    - JTextField examFeeField
+    - JTextField labFeeField
+    - JTextField sessionFeeField
+    - JTextField otherFeeField
+    - SetButton submitButton
+    - Connect connect
+    + PaymentForm()
+    - void createUI()
+    - void actionPerformed(ActionEvent e)
+    - BigDecimal parseField(String text)
+    - void clearFields()
+    + static void main(String[] args)
+}
+
+class TeacherViewClasses {
+    -JTable classesTable
+    -DefaultTableModel tableModel
+    -JTextField teacherIdField
+    +TeacherViewClasses()
+    -initializeUI()
+    -createHeaderPanel() : JPanel
+    -createInputPanel() : JPanel
+    -createSearchPanel() : JPanel
+    -createTablePanel() : JPanel
+    -createFooterPanel() : JPanel
+    -styleTable()
+    -styleButton(button: JButton, color: Color)
+    -fetchAssignments(connection: Connection, teacherId: String) : List<ClassAssignment>
+    -showError(message: String)
+    -showInfo(message: String)
+    -ClassAssignment
+}
+
+class ClassAssignment {
+    -String className
+    -String subject
+    -String classTime
+    -String classroom
+    +ClassAssignment(className: String, subject: String, classTime: String, classroom: String)
+    +getClassName() : String
+    +getSubject() : String
+    +getClassTime() : String
+    +getClassroom() : String
+}
+
+class ViewStudentDetails {
+    - final Color PRIMARY_COLOR
+    - final Color SECONDARY_COLOR
+    - final Color BACKGROUND_COLOR
+    - VSButton searchButton
+    - VSButton resetButton
+    - JComboBox<String> classDropdown
+    - JTextField searchField
+    + ViewStudentDetails()
+    - JLabel createStyledLabel(String text)
+    - JTextField createStyledTextField(int columns)
+    - void styleComboBox(JComboBox<String> combo)
+    - void setColumnWidths(JTable table)
+    - String[] fetchClasses()
+    - void fetchData(DefaultTableModel tableModel, String selectedClass, String roll)
+    + static void main(String[] args)
+}
+
+class VSButton {
+    - Color hoverColor
+    - Color pressColor
+    + VSButton(String text)
+    - void paintComponent(Graphics g)
+}
+
+class  ViewTeacherDetails {
+    - PRIMARY_COLOR: Color
+    - SECONDARY_COLOR: Color
+    - BACKGROUND_COLOR: Color
+    - searchButton: VTButton
+    - resetButton: VTButton
+    + ViewTeacherDetails()
+    + createStyledButton(String, Color): JButton
+    + setColumnWidths(JTable)
+    + fetchData(DefaultTableModel, String)
+    + addRowsToModel(DefaultTableModel, ResultSet)
+    + main(String[]): void
+}
+
+class VTButton {
+    - hoverColor: Color
+    - pressColor: Color
+    + VTButton(String)
+    + paintComponent(Graphics): void
+}
+
+class TeacherDashboard {
+    - TeacherNameLabel : JLabel
+    - TeacherIdLabel : JLabel
+    - TeacherEmailLabel : JLabel
+    - TeacherImageLabel : JLabel
+    - TeacherdobLabel : JLabel
+    - TeacherphoneLabel : JLabel
+    - TeacheraddressLabel : JLabel
+    - username : String
+    - SubmitAttendance : CustomButton
+    - updateInfo : CustomButton
+    - viewClasses : CustomButton
+    - UploadMaterials : CustomButton
+    - chat : CustomButton
+    - logout : JButton
+    - passroll : int
+    + TeacherDashboard(username : String)
+    - addInfoRow(panel : JPanel, labelText : String, valueLabel : JLabel)
+    - createButton(text : String) : CustomButton
+    - retrieveStudentData() : void
+    + actionPerformed(ae : ActionEvent) : void
+}
+
+class CustomButton {
+    + CustomButton(text : String)
+    - paintComponent(g : Graphics) : void
+    - paintBorder(g : Graphics) : void
+}
+
+ 
+
+
+class IndividualTeacherClass {
+    - JTable classesTable
+    - DefaultTableModel tableModel
+    - JTextField teacherIdField
+    - int teacherid
+    + IndividualTeacherClass(int id)
+    - void initializeUI()
+    - JPanel createHeaderPanel()
+    - JPanel createInputPanel()
+    - JPanel createTablePanel()
+    - JPanel createFooterPanel()
+    - void styleTable()
+    - void styleButton(JButton button, Color color)
+    - void handleSearch(int teacherid)
+    - List<ClassAssignment> fetchAssignments(Connection connection, int teacherId) throws SQLException
+    - void showError(String message)
+    - void showInfo(String message)
+}
+
+class ClassAssignment {
+    - String className
+    - String subject
+    - String classTime
+    - String classroom
+    + ClassAssignment(String className, String subject, String classTime, String classroom)
+    + String getClassName()
+    + String getSubject()
+    + String getClassTime()
+    + String getClassroom()
+}
+
+
+
+class TeacherAttendanceSubmission {
+    -JTable attendanceTable
+    -DefaultTableModel tableModel
+    -JComboBox<String> classDropdown
+    -JComboBox<String> subjectDropdown
+    -JDateChooser dateChooser
+    -Connect dbConnection
+    +TeacherAttendanceSubmission(username: String)
+    -void styleButton(button: JButton, bgColor: Color, fgColor: Color)
+    -String[] fetchClasses() : String[]
+    -void fetchStudentData() : void
+    -void submitAttendance() : void
+}
+
+
+class TeacherButton {
+    - Color hoverColor
+    - Color pressColor
+    + TeacherButton(text: String)
+    + paintComponent(g: Graphics)
+}
+
+class UpdateTeacher {
+    - JTextField tfname
+    - JTextField tffname
+    - JTextField tfid
+    - JTextField tfdob
+    - JTextField tfaddress
+    - JTextField tfphone
+    - JTextField tfemail
+    - JTextField tfnid
+    - JButton submit
+    - JButton cancel
+    - int id
+    - String Username
+    + UpdateTeacher(id: int)
+    + actionPerformed(ae: ActionEvent)
+}
+
+class UploadMaterials {
+    - Connect connect
+    - static final Color PRIMARY_COLOR
+    - static final Color SECONDARY_COLOR
+    - static final Color BACKGROUND_COLOR
+    - static final Font LABEL_FONT
+    - static final Font INPUT_FONT
+    + UploadMaterials()
+    + void createUploadUI()
+    - JPanel createInputPanel(String label, JComponent component)
+    - void styleButton(JButton button, Color bgColor, Color fgColor, int fontSize)
+    - void saveToDatabase(String cl, String subject, String fileType, String driveLink, String description)
+}
+
+class ChatServer {
+    - static final int PORT
+    - static final Map<String, PrintWriter> userWriters
+    + main(String[] args)
+    - static broadcast(String message, String excludeUser)
+    - static sendPrivateMessage(String fromUser, String toUser, String message)
+}
+
+class ClientHandler {
+    - Socket socket
+    - String username
+    - BufferedReader in
+    - PrintWriter out
+    + ClientHandler(Socket socket)
+    + void run()
+    - void handleClientMessage(String message)
+    - void handleFileTransfer(String fileMessage)
+    - void sendPrivateMessage(String fromUser, String toUser, String message)
+    - void broadcast(String message, String excludeUser)
+    - void cleanup()
+}
+
+class ChatClient {
+    - String username
+    - Socket socket
+    - BufferedReader in
+    - PrintWriter out
+    - JFrame frame
+    - JTextField textField
+    - JPanel chatPanel
+    - ChatClientCustomButton sendButton
+    - JToggleButton darkModeToggle
+    - boolean isDarkMode
+    - ChatClientCustomButton fileButton
+    + ChatClient()
+    - void createAndShowGUI()
+    - void sendMessage()
+    - void sendFile()
+    - void appendMessage(String message, boolean isOwnMessage)
+    - void toggleDarkMode()
+    - void connectToServer()
+    - void listenForMessages()
+    - void handleIncomingFile(String fileMessage)
+    - void showFileMessage(String sender, String fileName, String fileData, boolean isBroadcast)
+    - void cleanup()
+    + static void main(String[] args)
+}
+
+class ChatClientCustomButton {
+    - Color defaultColor
+    - Color hoverColor
+    + ChatClientCustomButton(String text, Color defaultColor, Color hoverColor)
+}
+
+class MessageBubble {
+    - String message
+    - String timestamp
+    - boolean isOwnMessage
+    - boolean isDarkMode
+    + MessageBubble(String message, String timestamp, boolean isOwnMessage, boolean isDarkMode)
+}
+
+
+class StudentCustomButton {
+    - String text
+    - int width
+    - int height
+    - Font font
+    + StudentCustomButton(String text, int width, int height, Font font)
+    + StudentCustomButton(String text)
+    + paintComponent(Graphics g)
+    + paintBorder(Graphics g)
+}
+
+class StudentDashboard {
+    - JLabel studentNameLabel
+    - JLabel studentIdLabel
+    - JLabel studentEmailLabel
+    - JLabel studentImageLabel
+    - JLabel studentdobLabel
+    - JLabel studentphoneLabel
+    - JLabel studentaddressLabel
+    - String username
+    - StudentCustomButton viewAttendance
+    - StudentCustomButton updateInfo
+    - StudentCustomButton viewGrades
+    - StudentCustomButton accessMaterials
+    - StudentCustomButton logout
+    - StudentCustomButton chat
+    - int passroll
+    - String name
+    - String sroll
+    - String cl
+    + StudentDashboard(String username)
+    - JLabel createInfoLabel(String text, Font font, Color color)
+    - StudentCustomButton DashBoardButton(String text, Color bgColor)
+    - retrieveStudentData()
+    + actionPerformed(ActionEvent ae)
+}
+
+class StudentAttendance {
+    - JTextField rollNumberField
+    - JButton checkButton
+    - JTextArea resultArea
+    + StudentAttendance()
+    - styleButton(JButton button)
+    - displayAttendance(int rollNumber)
+    + main(String[] args)
+}
+
+class StudentMaterials {
+    - Color primaryColor
+    - Color secondaryColor
+    + StudentMaterials()
+    - void createMainSection(JPanel mainPanel)
+    - JLabel createStyledLabel(String text)
+    - JComboBox<String> createStyledComboBox(String[] items)
+    - JButton createStyledButton(String text)
+    - void styleTable(JTable table)
+    - List<Material> fetchMaterialsFromDatabase(String cl, String subject)
+    + static void main(String[] args)
+}
+
+class MButton extends JButton {
+    - Color defaultColor
+    - Color hoverColor
+    - Color pressedColor
+    - int cornerRadius
+    + MButton(String text)
+    - void setUIProperties()
+    - void addInteractivity()
+    # void paintComponent(Graphics g)
+    # void paintBorder(Graphics g)
+    + Dimension getPreferredSize()
+}
+
+class Material {
+    - String description
+    - String link
+    - String type
+    + Material(String description, String link, String type)
+    + String getDescription()
+    + String getLink()
+    + String getType()
+}
+
+class UpdateStudent {
+    - JFrame frame
+    - JTextField tfName, tfEmail, tfCourse, tfFee, tfPaid, tfDue, tfAddress, tfCity, tfState, tfCountry, tfContact
+    - JButton btnUpdate, btnBack
+    - int rollno
+
+    + UpdateStudent(int rollno)
+    - void actionPerformed(ActionEvent e)
+}
+
+class ViewStudent {
+    + static void main(String[] args)
+}
+
+class PaymentButton {
+    - defaultColor: Color
+    - hoverColor: Color
+    - pressedColor: Color
+    - cornerRadius: int
+    + PaymentButton(text: String)
+    + setUIProperties(): void
+    + addInteractivity(): void
+    + paintComponent(g: Graphics): void
+    + paintBorder(g: Graphics): void
+    + getPreferredSize(): Dimension
+}
+
+class FeePayment {
+    - studentNameField: JTextField
+    - studentRollField: JTextField
+    - studentClassField: JTextField
+    - totalDueField: JTextField
+    - givenAmountField: JTextField
+    - remainingAmountField: JTextField
+    - calculateButton: PaymentButton
+    - printReceiptButton: PaymentButton
+    - cancelButton: PaymentButton
+    - payButton: PaymentButton
+    - statusLabel: JLabel
+    + FeePayment(studentName: String, studentRoll: String, studentClass: String)
+    - calculateRemainingAmount(): void
+    - processPayment(): void
+    - printReceipt(): void
+}
+
+
+
+MainPageButton <|-- JButton
+MainPage *-- MainPageButton
+MainPage --> AboutUs
+MainPage --> LoginSelectionPage
+MainPage --> Register
+Server *-- ClientHandler
+Client --> ServerListener
+MainPage --> Client
+MainPage --> Server
+LoginSelectionPage *-- SectionButton
+SectionButton *-- RoundedBorder
+Login *-- RoundedButton
+Login *-- JTextField
+Login *-- JPasswordField
+LoginSelectionPage --> Login
+Login --> Register
+
+Login --> AdminDashboard
+
+AdminDashboard --> AdminButton
+AdminDashboard --> ManagePage
+AdminDashboard --> Connect
+ManagePage --> AdminButton
+AdminButton --> RoundedBorder
+AdminDashboard ..|> ActionListener
+ManagePage ..|> ActionListener
+
+AdminDashboard --> AddNewStudent
+
+AddNewStudent "1" -- "1" SButton : uses
+AddNewStudent "1" -- "1" RoundedBorder : uses
+AddNewStudent "1" -- "1" Connect : interacts
+
+AdminDashboard --> AddNewTeacher
+
+TButton -down-> RoundedBorder : Uses
+
+AddNewTeacher -down-> TButton : Uses
+AddNewTeacher -down-> JButton : Uses
+AddNewTeacher -down-> JDateChooser : Uses
+AddNewTeacher -down-> JTextField : Uses
+
+AdminDashboard --> AssignClass
+
+AssignClass --> Connect : uses
+AssignClass --> DefaultListModel : contains
+AssignClass --> JList : contains
+AssignClass --> JCheckBox : contains
+AssignClass --> JComboBox : contains
+AssignClass --> JButton : creates
+AssignClass --> SQLException : handles
+
+AdminDashboard --> PaymentForm
+
+SetButton ..> PaymentForm : used by
+PaymentForm --> Connect : uses
+PaymentForm --> JTextField : contains
+PaymentForm --> SetButton : contains
+
+AdminDashboard --> TeacherViewClasses
+TeacherViewClasses -- "1" ClassAssignment : contains
+
+AdminDashboard --> ViewStudentDetails
+ViewStudentDetails "1" *-- "1..*" VSButton : contains >
+ViewStudentDetails "1" *-- "1..*" JComboBox : contains >
+ViewStudentDetails "1" *-- "1..*" JTextField : contains >
+VSButton "1" *-- "1" RoundedBorder : uses >
+
+AdminDashboard --> ViewTeacherDetails
+ViewTeacherDetails -[hidden]-> VTButton : contains
+ViewTeacherDetails -[hidden]-> RoundedBorder : uses
+ViewTeacherDetails -- VTButton : uses
+ViewTeacherDetails -- RoundedBorder : uses
+
+
+Login --> TeacherDashboard
+
+TeacherDashboard -- CustomButton : has
+TeacherDashboard -- Connect : uses
+TeacherDashboard -- MainPage : redirects to
+TeacherDashboard -- ChatServer : starts
+TeacherDashboard -- ChatClient : starts
+CustomButton -- JButton : extends
+
+TeacherDashboard --> IndividualTeacherClass
+
+IndividualTeacherClass --> ClassAssignment : uses
+IndividualTeacherClass --> Connect : creates
+
+TeacherDashboard -->TeacherAttendanceSubmission
+
+TeacherAttendanceSubmission --> Connect
+TeacherAttendanceSubmission --> JButton
+TeacherAttendanceSubmission --> JComboBox
+TeacherAttendanceSubmission --> JDateChooser
+TeacherAttendanceSubmission --> DefaultTableModel
+TeacherAttendanceSubmission --> JTable
+TeacherAttendanceSubmission --> JTableHeader
+
+TeacherDashboard --> UpdateTeacher
+
+TeacherButton -> RoundedBorder : Uses
+UpdateTeacher -> TeacherButton : Uses
+UpdateTeacher -> Connect : Uses
+UpdateTeacher -> RoundedBorder : Uses
+
+TeacherDashboard --> UploadMaterials
+
+UploadMaterials --> Connect
+UploadMaterials --> JFrame
+UploadMaterials --> JPanel
+UploadMaterials --> JLabel
+UploadMaterials --> JComboBox
+UploadMaterials --> JTextField
+UploadMaterials --> JButton
+
+TeacherDashboard --> ChatServer
+
+ChatServer --> ClientHandler : Creates instances of
+ChatServer --> Socket : Accepts client connections
+ChatServer --> PrintWriter : Writes messages
+ChatServer --> BufferedReader : Reads client messages
+ClientHandler --> Socket : Handles client communication
+ClientHandler --> PrintWriter : Sends messages to client
+ClientHandler --> BufferedReader : Receives messages from client
+
+TeacherDashboard --> ChatClient
+ChatClient "1" *-- "1..*" ChatClientCustomButton : has >
+ChatClient "1" *-- "1..*" MessageBubble : contains >
+ChatClientCustomButton "1" *-- "1" Color : uses >
+ChatClientCustomButton "1" *-- "1" Font : uses >
+MessageBubble "1" *-- "1" Color : uses >
+MessageBubble "1" *-- "1" FontMetrics : uses >
+
+
+Login --> StudentDashboard
+StudentDashboard --> StudentCustomButton
+StudentDashboard --> Connect
+
+StudentDashboard --> StudentAttendance
+
+StudentAttendance --> Connect
+
+
+StudentDashboard --> StudentMaterials
+
+StudentMaterials *-- Material
+StudentMaterials *-- MButton
+StudentMaterials *-- Connect
+
+StudentDashboard --> UpdateStudent
+
+UpdateStudent --|> ActionListener
+UpdateStudent --> JFrame
+UpdateStudent --> JButton
+UpdateStudent --> JTextField
+
+StudentDashboard --> FeePayment
+FeePayment --> PaymentButton : uses
+
+
+StudentDashboard --> ChatServer
+StudentDashboard --> ChatClient
+
+@enduml
