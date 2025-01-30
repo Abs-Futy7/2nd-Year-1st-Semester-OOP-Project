@@ -38,7 +38,7 @@ The **School Management System** is an Object-Oriented Programming (OOP) based p
 ### **Steps to Set Up the Project**
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Mehedi26696/2nd-Year-1st-Semester-Java-OOP-Projects.git
+   git clone https://github.com/Mehedi26696/2nd-Year-1st-Semester-Java-OOP.git
    ```
 2. **Import Project into NetBeans**
    - Open NetBeans and select **Open Project**.
@@ -47,22 +47,31 @@ The **School Management System** is an Object-Oriented Programming (OOP) based p
 3. **Set Up MySQL Database**
    - Create a new MySQL database:
      ```sql
-     CREATE DATABASE school_management;
+     CREATE DATABASE schoolmanagementsystem;;
      ```
-   - Import the provided `school_management.sql` file:
+   - Import the provided `School_Management_System.sql` file:
      ```bash
-     mysql -u root -p school_management < school_management.sql
+     mysql -u root -p schoolmanagementsystem; < School_Management_System.sql
      ```
    - Update **database credentials** in `DBConnection.java`:
      ```java
-     String url = "jdbc:mysql://localhost:3306/school_management";
+     String url = "jdbc:mysql://localhost:3306/schoolmanagementsystem;";
      String username = "root";
      String password = "your_password";
      ```
 
 4. **Run the Project**
    - In NetBeans, select **Run Project** (Apache Ant will handle the build and execution).
+   - To use the chatroom feature, you need to manually run the `ChatServer.java` file. Once the server is running, you can access and use the chatroom feature.
 
+5. **Another Way to Run the Project**
+   - Download the `dist` folder from the repository.
+   - Open a terminal and navigate to the `dist` folder.
+   - Run the JAR file using the following command:
+     ```bash
+     java -jar School_Management_System.jar
+     ```
+   - Ensure you have **JDK 22** installed on your system to run the JAR file.
 ---
 
 ## Features
