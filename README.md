@@ -70,7 +70,7 @@ The **School Management System** is an Object-Oriented Programming (OOP) based p
      ```bash
      java -jar School_Management_System.jar
      ```
-   - Ensure you have **JDK 22** installed on your system to run the JAR file.
+   - Ensure **JDK 22** is installed and **SQL** is set up correctly before running the JAR file.
 6. **For Chat Room Feature**
    - To use the chatroom feature, you need to manually run the `ChatServer.java` file. Once the server is running, you can access and use the chatroom feature.
 ---
